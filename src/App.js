@@ -1,38 +1,18 @@
 import React from "react";
-
-import MainCategory from "./Components/MainCategory";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
+import { Navbar } from "./Components/Navbar/Navbar";
+import Shop from "./Components/Shop";
 
 const App = () => {
-  const category = [
-    {
-      id: 1,
-      name: "LIPOSUCTION CANNULA",
-      sub_name: "Top Instrument",
-      image: "./Images/C_pic_1.png",
-    },
-    {
-      id: 2,
-      name: " SURGERY TOOLS",
-      sub_name: "Best Instrument",
-      image: "./Images/C_pic_2.png",
-    },
-    {
-      id: 3,
-      name: "RHINOPLASTIC INSTRUMENT",
-      sub_name: "Good One",
-      image: "./Images/C_pic_2.png",
-    },
-    {
-      id: 3,
-      name: "RHINOPLASTIC INSTRUMENT",
-      sub_name: "Your Choice.",
-      image: "./Images/C_pic_1.png",
-    },
-  ];
-
   return (
     <>
-      <MainCategory category={category} />
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />}></Route>
+          <Route path="Shop" element={<Shop />}></Route>
+        </Route>
+      </Routes>
     </>
   );
 };
