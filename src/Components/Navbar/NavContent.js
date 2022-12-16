@@ -3,21 +3,23 @@ import {
   Button,
   Flex,
   HStack,
-  Link,
   Image,
   useDisclosure,
   // VisuallyHidden,
   // useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Link as ReachLink } from "@reach/router";
+import { Await, Link as ReachLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 // import { Logo } from "./Logo";
 import { NavLink } from "./NavLink";
 import { NavMenu } from "./NavMenu";
 import { Submenu } from "./Submenu";
 import { ToggleButton } from "./ToggleButton";
-import { links } from "./_data";
+import { Links } from "./_data";
+import { UserSignOut } from "../../utils/Firebase";
 const MobileNavContext = (props) => {
   const { isOpen, onToggle } = useDisclosure();
   return (
@@ -31,11 +33,12 @@ const MobileNavContext = (props) => {
         <Box flexBasis="6rem">
           <ToggleButton isOpen={isOpen} onClick={onToggle} />
         </Box>
-        <Box as="a" rel="home" mx="auto">
+        <Box rel="home" mx="auto">
           {/* <Logo h="24px" iconColor="blue.400" /> */}
           <Image
             src="./Images/logo.svg"
             // sizes="sm"
+            alt="Logo"
             height={"100%"}
             width="100%"
           ></Image>
@@ -52,7 +55,7 @@ const MobileNavContext = (props) => {
         </Box>
       </Flex>
       <NavMenu animate={isOpen ? "open" : "closed"}>
-        {links.map((link, idx) =>
+        {Links.map((link, idx) =>
           link.children ? (
             <Submenu.Mobile key={idx} link={link} />
           ) : (
@@ -70,6 +73,8 @@ const MobileNavContext = (props) => {
 };
 
 const DesktopNavContent = (props) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
   return (
     <Flex
       className="nav-content__desktop"
@@ -77,44 +82,59 @@ const DesktopNavContent = (props) => {
       justify="space-between"
       {...props}
     >
-      <Link as={ReachLink} to="/" rel="home">
+      <ReachLink to="/" rel="home">
         {/* <VisuallyHidden>Envelope</VisuallyHidden> */}
         <Image
           src="./Images/logo.svg"
           // sizes="sm"
+          alt="Logo"
           height={"100%"}
           width="100%"
         ></Image>
-      </Link>
+      </ReachLink>
+
       <HStack
         as="ul"
         id="nav__primary-menu"
         aria-label="Main Menu"
         listStyleType="none"
       >
-        {links.map((link, idx) => (
+        {Links.map((link, idx) => (
           <Box as="li" key={idx} id={`nav__menuitem-${idx}`}>
             {link.children ? (
               <Submenu.Desktop link={link} />
             ) : (
-              <NavLink.Desktop href={link.href}>{link.label}</NavLink.Desktop>
+              <ReachLink to={link.href}>
+                <NavLink.Desktop>{link.label}</NavLink.Desktop>
+              </ReachLink>
             )}
           </Box>
         ))}
       </HStack>
       <HStack spacing="8" minW="240px" justify="space-between">
-        <Box
-          as={ReachLink}
-          to="/shop"
-          color={"#153A5B"}
-          // color={mode("blue.600", "blue.300")}
-          // fontWeight="bold"
-        >
-          Sign In
-        </Box>
-        <Button as="a" href="#" bg={"#153A5B"} color="white" fontWeight="bold">
-          Sign up for free
-        </Button>
+        {currentUser ? (
+          <ReachLink
+            to="/Auth"
+            color={"#153A5B"}
+            // color={mode("blue.600", "blue.300")}
+            // fontWeight="bold"
+          >
+            <Button bg={"#153A5B"} color="white" onClick={UserSignOut}>
+              Sign out
+            </Button>
+          </ReachLink>
+        ) : (
+          <ReachLink
+            to="/Auth"
+            color={"#153A5B"}
+            // color={mode("blue.600", "blue.300")}
+            // fontWeight="bold"
+          >
+            <Button bg={"#153A5B"} color="white">
+              Sign in
+            </Button>
+          </ReachLink>
+        )}
       </HStack>
     </Flex>
   );

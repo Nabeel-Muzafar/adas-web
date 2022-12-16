@@ -10,7 +10,9 @@ export const Navbar = () => {
         as="header"
         bg={mode("white", "gray.800")}
         position="relative"
-        zIndex="10"
+        zIndex="100000"
+        border={"1px"}
+        borderColor="gray.100"
       >
         <Box
           as="nav"

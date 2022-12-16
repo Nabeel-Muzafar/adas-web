@@ -1,10 +1,10 @@
 import { chakra } from "@chakra-ui/react";
 import * as React from "react";
-const DesktopNavLink = React.forwardRef((props, ref) => {
+const DesktopNavLink = React.forwardRef((props, innerRef) => {
   const { active, ...rest } = props;
   return (
     <chakra.a
-      ref={ref}
+      ref={innerRef}
       display="inline-block"
       px="4"
       py="6"

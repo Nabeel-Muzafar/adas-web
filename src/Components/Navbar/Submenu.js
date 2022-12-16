@@ -5,6 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { NavLink } from "./NavLink";
 import { NavMenu } from "./NavMenu";
 import { SubmenuItem as DesktopMenuItem } from "./SubmenuItem";
+import { Link as ReachLink } from "react-router-dom";
 
 const DesktopSubmenu = (props) => {
   const { link } = props;
@@ -28,14 +29,16 @@ const DesktopSubmenu = (props) => {
         <Box maxW="7xl" mx="auto" px="8">
           <SimpleGrid spacing="10" columns={2}>
             {link.children?.map((item, idx) => (
-              <DesktopMenuItem
-                key={idx}
-                title={item.label}
-                href={item.href}
-                icon={item.icon}
-              >
-                {item.description}
-              </DesktopMenuItem>
+              <ReachLink>
+                <DesktopMenuItem
+                  key={idx}
+                  title={item.label}
+                  to={item.href}
+                  icon={item.icon}
+                >
+                  {item.description}
+                </DesktopMenuItem>
+              </ReachLink>
             ))}
           </SimpleGrid>
         </Box>
@@ -66,9 +69,9 @@ const MobileSubMenu = (props) => {
       <Collapse in={isOpen}>
         <Box pl="5">
           {link.children?.map((item, idx) => (
-            <NavLink.Mobile key={idx} href={item.href}>
-              {item.label}
-            </NavLink.Mobile>
+            <ReachLink to={item.href}>
+              <NavLink.Mobile key={item.id}>{item.label}</NavLink.Mobile>
+            </ReachLink>
           ))}
         </Box>
       </Collapse>
