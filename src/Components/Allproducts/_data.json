@@ -1,0 +1,49 @@
+[
+  {
+    "id": "1",
+    "name": "Bamboo Tan",
+    "currency": "USD",
+    "price": 199,
+    "flag": "new",
+    "imageUrl": "./Images/C_pic_1.png",
+    "rating": 4,
+    "ratingCount": 1,
+    "description": "With a sleek design and a captivating essence, this is a modern Classic made for every occasion.",
+    "images": ".Images/C_pic_1.png"
+  },
+  {
+    "id": "2",
+    "name": "Iconic Turquoise",
+    "currency": "USD",
+    "price": 199,
+    "salePrice": 179.99,
+    "flag": "on-sale",
+    "imageUrl": "./Images/C_pic_2.png",
+    "rating": 4,
+    "ratingCount": 12,
+    "description": "With a sleek design and a captivating essence, this is a modern Classic made for every occasion.",
+    "images": "https://images.unsplash.com/photo-1451290337906-ac938fc89bce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1777&q=80"
+  },
+  {
+    "id": "3",
+    "name": "Marble Leather",
+    "currency": "USD",
+    "price": 199,
+    "imageUrl": "./Images/C_pic_1.png",
+    "rating": 4,
+    "ratingCount": 12,
+    "description": "With a sleek design and a captivating essence, this is a modern Classic made for every occasion.",
+    "images": "https://images.unsplash.com/photo-1451290337906-ac938fc89bce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1777&q=80"
+  },
+  {
+    "id": "4",
+    "name": "Silve wolf",
+    "currency": "GBP",
+    "price": 199,
+    "imageUrl": "./Images/C_pic_2.png",
+    "rating": 5,
+    "ratingCount": 1,
+    "description": "With a sleek design and a captivating essence, this is a modern Classic made for every occasion.",
+    "images": "./Images/C_pic_1.png"
+  }
+]

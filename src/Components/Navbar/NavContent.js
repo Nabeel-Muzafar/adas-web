@@ -8,9 +8,19 @@ import {
   // VisuallyHidden,
   // useColorModeValue as mode,
 } from "@chakra-ui/react";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Input,
+} from "@chakra-ui/react";
 import * as React from "react";
 import { Await, Link as ReachLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { UserContext } from "../../Context/UserContext";
 
 // import { Logo } from "./Logo";
@@ -21,7 +31,8 @@ import { ToggleButton } from "./ToggleButton";
 import { Links } from "./_data";
 import { UserSignOut } from "../../utils/Firebase";
 const MobileNavContext = (props) => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onClose } = useDisclosure();
+
   return (
     <>
       <Flex
@@ -74,7 +85,9 @@ const MobileNavContext = (props) => {
 
 const DesktopNavContent = (props) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  // console.log(currentUser);
   return (
     <Flex
       className="nav-content__desktop"
@@ -135,6 +148,32 @@ const DesktopNavContent = (props) => {
             </Button>
           </ReachLink>
         )}
+        <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+          Open
+        </Button>
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Create your account</DrawerHeader>
+
+            <DrawerBody>
+              <Input placeholder="Type here..." />
+            </DrawerBody>
+
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="blue">Save</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       </HStack>
     </Flex>
   );

@@ -5,13 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./Context/UserContext";
+import { ProductProvider } from "./Context/ProductsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ChakraProvider>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductProvider>
+          <App />
+        </ProductProvider>
       </UserProvider>
     </BrowserRouter>
   </ChakraProvider>
