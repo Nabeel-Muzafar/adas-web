@@ -8,6 +8,7 @@ import {
   // VisuallyHidden,
   // useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { BsFillCartFill, BsCartX } from "react-icons/bs";
 import {
   Drawer,
   DrawerBody,
@@ -113,7 +114,7 @@ const DesktopNavContent = (props) => {
         listStyleType="none"
       >
         {Links.map((link, idx) => (
-          <Box as="li" key={idx} id={`nav__menuitem-${idx}`}>
+          <Box as="li" key={idx} id={`nav__menuitem-${idx}`} zIndex="999999">
             {link.children ? (
               <Submenu.Desktop link={link} />
             ) : (
@@ -124,7 +125,7 @@ const DesktopNavContent = (props) => {
           </Box>
         ))}
       </HStack>
-      <HStack spacing="8" minW="240px" justify="space-between">
+      <HStack spacing="5" minW="20px" justify="space-between">
         {currentUser ? (
           <ReachLink
             to="/Auth"
@@ -132,7 +133,18 @@ const DesktopNavContent = (props) => {
             // color={mode("blue.600", "blue.300")}
             // fontWeight="bold"
           >
-            <Button bg={"#153A5B"} color="white" onClick={UserSignOut}>
+            <Button
+              onClick={UserSignOut}
+              bg={"#153A5B"}
+              color="white"
+              _hover={{
+                color: "#153A5B",
+                bg: "white",
+                border: "1px solid #153A5B",
+              }}
+              border="1px solid #153A5B"
+              transition={"0.7s"}
+            >
               Sign out
             </Button>
           </ReachLink>
@@ -143,13 +155,35 @@ const DesktopNavContent = (props) => {
             // color={mode("blue.600", "blue.300")}
             // fontWeight="bold"
           >
-            <Button bg={"#153A5B"} color="white">
+            <Button
+              bg={"#153A5B"}
+              color="white"
+              _hover={{
+                color: "#153A5B",
+                bg: "white",
+                border: "1px solid #153A5B",
+              }}
+              border="1px solid #153A5B"
+              transition={"0.7s"}
+            >
               Sign in
             </Button>
           </ReachLink>
         )}
-        <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-          Open
+        <Button
+          ref={btnRef}
+          bg={"#153A5B"}
+          color="white"
+          _hover={{
+            color: "#153A5B",
+            bg: "white",
+            border: "1px solid #153A5B",
+          }}
+          border="1px solid #153A5B"
+          transition={"0.7s"}
+          onClick={onOpen}
+        >
+          <BsFillCartFill />
         </Button>
         <Drawer
           isOpen={isOpen}

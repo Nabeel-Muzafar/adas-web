@@ -358,7 +358,13 @@ function Auth() {
           border-color: rgb(21, 58, 91);
         }
       `}</style>
-      <Flex h="92vh" align={"center"} justify="center" minH={"700px"}>
+      <Flex
+        //  h="92vh"
+        my={"2rem"}
+        align={"center"}
+        justify="center"
+        // minH={"700px"}
+      >
         <div className="container" id="container">
           <div className="form-container sign-up-container">
             <form onSubmit={handleSubmisson}>

@@ -5,24 +5,24 @@ import { Outlet } from "react-router-dom";
 
 export const Navbar = () => {
   return (
-    <Box minH="640px">
+    <Box minH="240px">
       <Box
         as="header"
         bg={mode("white", "gray.800")}
         position="relative"
-        zIndex="100000"
+        // zIndex="100000"
         border={"1px"}
         borderColor="gray.100"
       >
         <Box
           as="nav"
           aria-label="Main navigation"
-          maxW="7xl"
+          maxW="8xl"
           mx="auto"
-          px={{
-            base: "6",
-            md: "8",
-          }}
+          // px={{
+          //   base: "6",
+          //   md: "8",
+          // }}
         >
           <NavContent.Mobile
             display={{
