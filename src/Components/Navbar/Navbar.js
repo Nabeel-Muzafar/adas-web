@@ -19,10 +19,10 @@ export const Navbar = () => {
           aria-label="Main navigation"
           maxW="8xl"
           mx="auto"
-          // px={{
-          //   base: "6",
-          //   md: "8",
-          // }}
+          px={{
+            base: "6",
+            md: "8",
+          }}
         >
           <NavContent.Mobile
             display={{

@@ -76,9 +76,6 @@ const MobileNavContext = (props) => {
             </NavLink.Mobile>
           )
         )}
-        <Button colorScheme="blue" w="full" size="lg" mt="5">
-          Try for free
-        </Button>
       </NavMenu>
     </>
   );
