@@ -8,17 +8,7 @@ import {
   // VisuallyHidden,
   // useColorModeValue as mode,
 } from "@chakra-ui/react";
-import { BsFillCartFill, BsCartX } from "react-icons/bs";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Input,
-} from "@chakra-ui/react";
+
 import * as React from "react";
 import { Await, Link as ReachLink } from "react-router-dom";
 import { useContext, useRef } from "react";
@@ -31,6 +21,7 @@ import { Submenu } from "./Submenu";
 import { ToggleButton } from "./ToggleButton";
 import { Links } from "./_data";
 import { UserSignOut } from "../../utils/Firebase";
+import Cart from "../Cart";
 const MobileNavContext = (props) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
 
@@ -83,8 +74,7 @@ const MobileNavContext = (props) => {
 
 const DesktopNavContent = (props) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+
   // console.log(currentUser);
   return (
     <Flex
@@ -111,7 +101,12 @@ const DesktopNavContent = (props) => {
         listStyleType="none"
       >
         {Links.map((link, idx) => (
-          <Box as="li" key={idx} id={`nav__menuitem-${idx}`} zIndex="999999">
+          <Box
+            as="li"
+            key={idx}
+            id={`nav__menuitem-${idx}`}
+            //  zIndex="999999"
+          >
             {link.children ? (
               <Submenu.Desktop link={link} />
             ) : (
@@ -167,44 +162,7 @@ const DesktopNavContent = (props) => {
             </Button>
           </ReachLink>
         )}
-        <Button
-          ref={btnRef}
-          bg={"#153A5B"}
-          color="white"
-          _hover={{
-            color: "#153A5B",
-            bg: "white",
-            border: "1px solid #153A5B",
-          }}
-          border="1px solid #153A5B"
-          transition={"0.7s"}
-          onClick={onOpen}
-        >
-          <BsFillCartFill />
-        </Button>
-        <Drawer
-          isOpen={isOpen}
-          placement="right"
-          onClose={onClose}
-          finalFocusRef={btnRef}
-        >
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
-
-            <DrawerBody>
-              <Input placeholder="Type here..." />
-            </DrawerBody>
-
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme="blue">Save</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
+        <Cart />
       </HStack>
     </Flex>
   );

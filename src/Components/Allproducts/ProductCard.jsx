@@ -13,14 +13,21 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useContext } from "react";
 import * as React from "react";
 import { Rating } from "./Rating";
 import { FavouriteButton } from "./FavouriteButton";
 import { PriceTag } from "./PriceTag";
+import { CartContext } from "../../Context/Cartcontext";
 
 export const ProductCard = (props) => {
+  const { addTOCart } = useContext(CartContext);
   const { product, rootProps } = props;
   const { name, imageUrl, price, salePrice, rating } = product;
+
+  const addCart = () => {
+    addTOCart(product);
+  };
   return (
     <Stack
       // border={"1px"}
@@ -82,6 +89,7 @@ export const ProductCard = (props) => {
           bg="#153A5B"
           color={"white"}
           width="full"
+          onClick={addCart}
         >
           Add to cart
         </Button>
